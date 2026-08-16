@@ -9,7 +9,7 @@ const mongoCred = process.env.mongoUrl;
 
 mongoose.connect(mongoCred)
 .then(() => {
-    console.log("Database connected");
+    console.log("Database connected Successfully");
 })
 
 .catch((error) => {
