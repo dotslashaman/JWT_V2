@@ -20,7 +20,6 @@ function validateEmail(req,res,next) {
 
 }
 
-
 function validatePassword(req,res,next){
     const passReq = z.object({
         password : z.string()
@@ -47,8 +46,26 @@ function validatePassword(req,res,next){
 }
 
 function validateAge(req,res,next){
+    const passReq = z.object({
+        age : z.number()
+        .positive()
+        .int()
+        .finite()
+        .min(18)
+    })
 
+    const result = passReq.safeParse(req.body);
+
+    if(!result.success){
+        return res.status(400).json({
+            "msg" : "Invalid Age Entered",
+            "details" : result.error.format()
+        })
+    }
+
+    else{
+        next();
+    }
 }
 
-
-module.exports = validateEmail;
+module.exports = {validateAge,validateEmail,validatePassword}
