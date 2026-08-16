@@ -4,8 +4,11 @@ const validate = require("./validations");
 const mongoose = require("mongoose");
 const { number } = require("zod");
 require('dotenv').config();
+const db = require('./db'); 
 
 const mongoCred = process.env.mongoUrl;
+
+/*
 
 mongoose.connect(mongoCred)
 .then(() => {
@@ -16,13 +19,10 @@ mongoose.connect(mongoCred)
     console.log(error);
 })
 
-const mongSchmea = new mongoose.Schema({
-    "email" : String,
-    "age" : Number,
-    "password" : String
-})
+*/
 
-const db = mongoose.model('UserData', mongSchmea);
+
+
 
 router.post('/signUp',
     
