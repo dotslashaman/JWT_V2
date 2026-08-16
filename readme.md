@@ -29,9 +29,11 @@ Current Status : This project is live on web.
 Payload : 
 
 {
+
     "email" : "enter@test.com"
     "password" : "Pass123@"
     "age" : 19
+    
 }
 
 url to test : https://jwt-v2.onrender.com/
