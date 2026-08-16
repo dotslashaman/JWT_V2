@@ -25,7 +25,8 @@ router.post('/login',
     validate.validateAge,
     async(req,res) => {
         const email = req.body.email;
-        const checkExisting = await db.findOne({email});
+        const password = req.body.password;
+        const checkExisting = await db.findOne({email,password});
 
         if(!checkExisting){
             console.log(req.body);
