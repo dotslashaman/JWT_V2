@@ -6,7 +6,7 @@ const { number } = require("zod");
 require('dotenv').config();
 const db = require('./db'); 
 
-const mongoCred = process.env.mongoUrl;
+//const mongoCred = process.env.mongoUrl;
 
 /*
 
@@ -22,8 +22,6 @@ mongoose.connect(mongoCred)
 */
 
 
-
-
 router.post('/signUp',
     
     validate.validateEmail,
@@ -37,7 +35,7 @@ router.post('/signUp',
         if(!checkExisting){
             const details = new db({...req.body})
             await details.save();
-            res.status(200).json({
+            res.status(201).json({
                 "msg" : "User Created Successfully"
             })
         }else{

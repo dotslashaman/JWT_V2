@@ -10,10 +10,6 @@ app.get('/pingg', (req,res) => {
 
 app.use('/', signUpRouter);
 
-
-
-
-
-
+app.use('/', loginRouter);
 
 module.exports = app;
