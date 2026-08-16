@@ -1,9 +1,14 @@
 const express = require("express");
-const validate = require('./validations');
 const app = express();
+const signUpRouter = require('./signup');
 app.use(express.json());
 
-app.post('/pingg', validate.validateAge , (req,res) => {
+app.get('/pingg', (req,res) => {
     res.status(200).send("Everything fine here : )")
 });
+
+app.use('/', signUpRouter);
+
+
+
 module.exports = app;
