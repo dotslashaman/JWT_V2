@@ -8,7 +8,7 @@ const mongoCred = process.env.mongoUrl;
 
 mongoose.connect(mongoCred)
 .then(() => {
-    console.log("Database connected");
+    console.log("Database Connected");
 })
 
 .catch((error) => {
@@ -24,5 +24,5 @@ const userSchema = new mongoose.Schema({
 const db = mongoose.model('UserData', userSchema);
 
 router.post('/login', validate.validateEmail, validate.validatePassword, validate.validateAge, async(req,res) => {
-    
+
 })
