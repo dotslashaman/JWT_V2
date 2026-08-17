@@ -26,7 +26,7 @@ For Log In :
 
 Current Status : This project is live on web. 
 
-Payload : 
+Sample Payload : 
 
 {
 
