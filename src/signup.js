@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const { number } = require("zod");
 require('dotenv').config();
 const db = require('./db'); 
+const bcrypt = require("bcrypt");
 
 //const mongoCred = process.env.mongoUrl;
 
@@ -30,6 +31,10 @@ router.post('/signUp',
     async(req,res) => {
         
         const email = req.body.email;
+        const password = req.body.password;
+        const saltRounds = 11;
+        const hashedPass = await bcrypt.hash(password,saltRounds); //variable to store hashed password
+        req.body.password = hashedPass; //replace user password with hashed password
         const checkExisting = await db.findOne({email});
 
         if(!checkExisting){
