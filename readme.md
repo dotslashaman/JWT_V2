@@ -43,3 +43,11 @@ sign up url : https://jwt-v2.onrender.com/signUp. - POST
 login url : https://jwt-v2.onrender.com/login.  - POST
 
 server ping url : https://jwt-v2.onrender.com/pingg  - GET
+
+
+
+Changes done : 
+
+1.Password is hashed before stroing in to database during sign up
+2. While logging in plain password is compared to hashed password - securing password 
+3. Return JWT while logging in 
