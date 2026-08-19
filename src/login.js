@@ -5,6 +5,10 @@ require('dotenv').config();
 const mongoose = require("mongoose");
 const validate = require("./validations");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+const jwtKey = process.env.jwt_secret;
+
 
 
 
@@ -26,9 +30,12 @@ router.post('/login',
     validate.validatePassword,
     validate.validateAge,
     async(req,res) => {
+        
         const email = req.body.email;
         const password = req.body.password;
         const checkExisting = await db.findOne({email});
+        const payL = checkExisting.toObject();
+        delete payL.password;
        
 
 
@@ -43,9 +50,12 @@ router.post('/login',
         
         const checkCorrect = await bcrypt.compare(password, checkExisting.password);
         
-
         if(checkCorrect == true){
-            return res.status(200).send("welcome : ) You are logged in");
+            const token = jwt.sign(payL, jwtKey, {expiresIn : '60m'} )
+            return res.status(200).json({
+                "msg" : "Welcome, you are logged in : )",
+                "token" : token
+            })
         }else{
             
             
